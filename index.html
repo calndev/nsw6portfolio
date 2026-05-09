@@ -41,7 +41,6 @@
     overflow-x: hidden;
   }
 
-  /* ── HERO ── */
   #hero {
     position: relative;
     height: 100vh;
@@ -150,7 +149,6 @@
 
   .scroll-hint svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 1.5; }
 
-  /* ── TRANSITION FADE ── */
   #fade-band {
     height: 120px;
     background: linear-gradient(to bottom, transparent, #000);
@@ -160,7 +158,6 @@
     z-index: 3;
   }
 
-  /* ── PROJECTS ── */
   #projects {
     min-height: 100vh;
     background: #000;
@@ -203,16 +200,8 @@
     transition: all 0.2s ease;
   }
 
-  .pill:hover {
-    border-color: rgba(255,255,255,0.5);
-    color: #fff;
-  }
-
-  .pill.active {
-    background: #fff;
-    border-color: #fff;
-    color: #000;
-  }
+  .pill:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+  .pill.active { background: #fff; border-color: #fff; color: #000; }
 
   .project-grid {
     display: grid;
@@ -234,14 +223,8 @@
     cursor: default;
   }
 
-  .project-card:hover {
-    border-color: rgba(255,255,255,0.22);
-    transform: translateY(-3px);
-  }
-
-  .project-card[data-hidden="true"] {
-    display: none;
-  }
+  .project-card:hover { border-color: rgba(255,255,255,0.22); transform: translateY(-3px); }
+  .project-card[data-hidden="true"] { display: none; }
 
   .card-top {
     display: flex;
@@ -275,12 +258,7 @@
     line-height: 1.65;
   }
 
-  .card-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
-  }
+  .card-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
 
   .stack-tag {
     font-size: 10px;
@@ -292,12 +270,7 @@
     border: 0.5px solid rgba(255,255,255,0.08);
   }
 
-  .card-links {
-    display: flex;
-    gap: 12px;
-    margin-top: auto;
-    padding-top: 8px;
-  }
+  .card-links { display: flex; gap: 12px; margin-top: auto; padding-top: 8px; }
 
   .card-link {
     font-size: 11px;
@@ -323,7 +296,6 @@
     display: none;
   }
 
-  /* ── FOOTER ── */
   footer {
     background: #000;
     border-top: 0.5px solid rgba(255,255,255,0.07);
@@ -504,15 +476,14 @@ let W, H;
 function resize() {
   W = canvas.width = window.innerWidth;
   H = canvas.height = window.innerHeight;
-  const colW = 180;
-  const count = Math.ceil(W / colW);
-  cols = Array.from({ length: count }, (_, i) => ({
-    x: i * colW + Math.random() * 60,
+  const count = Math.ceil(W / 55) * 2;
+  cols = Array.from({ length: count }, () => ({
+    x: Math.random() * W,
     y: -Math.random() * H,
-    speed: 0.6 + Math.random() * 0.9,
+    speed: 0.5 + Math.random() * 1.1,
     text: snippets[Math.floor(Math.random() * snippets.length)],
-    opacity: 0.08 + Math.random() * 0.18,
-    size: 10 + Math.floor(Math.random() * 4),
+    opacity: 0.1 + Math.random() * 0.25,
+    size: 9 + Math.floor(Math.random() * 4),
   }));
 }
 
@@ -533,17 +504,14 @@ function draw() {
 
   if (globalAlpha <= 0) { requestAnimationFrame(draw); return; }
 
-  ctx.font = `${cols[0]?.size || 11}px Consolas, monospace`;
-
   for (const col of cols) {
     col.y += col.speed;
     if (col.y > H + 40) {
       col.y = -60;
       col.text = snippets[Math.floor(Math.random() * snippets.length)];
-      col.opacity = 0.08 + Math.random() * 0.18;
-      col.speed = 0.6 + Math.random() * 0.9;
+      col.opacity = 0.1 + Math.random() * 0.25;
+      col.speed = 0.5 + Math.random() * 1.1;
     }
-
     ctx.font = `${col.size}px Consolas, monospace`;
     ctx.fillStyle = `rgba(255,255,255,${col.opacity * globalAlpha})`;
     ctx.fillText(col.text, col.x, col.y);
