@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eli / nsw6 — about</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single:wght@100..900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  ::selection { background: #303234; color: #ffffff; }
+  ::-moz-selection { background: #303234; color: #ffffff; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+  * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) #000; }
+
+  body {
+    background: #000;
+    color: #fff;
+    font-family: 'Bitcount Grid Single', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* rain canvas */
+  #rain-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* center glow */
+  #center-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.055) 0%, rgba(255,255,255,0.018) 35%, transparent 70%);
+    animation: glowPulse 8s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.18); }
+  }
+
+  /* back link */
+  #back-link {
+    position: fixed;
+    top: 1.8rem;
+    left: 2rem;
+    z-index: 10;
+    font-family: 'Bitcount Grid Single', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    border-bottom: 0.5px solid rgba(255,255,255,0.2);
+    padding-bottom: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  #back-link:hover { color: #fff; border-color: rgba(255,255,255,0.8); }
+
+  /* main content */
+  .page-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 8rem 2rem 6rem;
+  }
+
+  .about-box {
+    background: rgba(0, 0, 0, 0.55);
+    border: 0.5px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 3rem 3.5rem;
+    max-width: 700px;
+    width: 100%;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .about-box h1 {
+    font-family: 'Bitcount Grid Single', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+
+  .about-box p {
+    font-family: 'Bitcount Grid Single', sans-serif;
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.45);
+  }
+</style>
+</head>
+<body>
+
+<canvas id="rain-canvas"></canvas>
+<div id="center-glow"></div>
+
+<a id="back-link" href="index.html">← back</a>
+
+<div class="page-content">
+  <div class="about-box">
+    <h1>about me</h1>
+    <p>
+      I'm Eli (also known as nsw6), a full-stack web developer based in Australia. I build web experiences and web apps with a focus on clean interfaces, smooth user experience, and fast iteration. I also work with Python, both for backend development and standalone scripting, creating practical tools, automation, and small systems that extend my projects beyond the browser. My work is driven by experimentation, clarity in design, and rapidly turning ideas into functional, usable products.
+    </p>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('rain-canvas');
+const ctx = canvas.getContext('2d');
+
+const snippets = [
+  'const x = 0;', 'def main():', 'import os', 'for i in range(10):',
+  '<div>', '</div>', 'return True', 'console.log()', 'if __name__',
+  'function()', 'display:flex;', 'border-radius:', 'async def',
+  'await fetch()', 'margin:0 auto', 'print("hello")', 'var i=0;',
+  'let arr=[]', 'padding:1rem', 'class App{', 'useState()', 'useEffect',
+  'import React', 'from flask', 'requests.get()', '.then(res=>', 'export default',
+  'background:#000', ':root{', '@keyframes', 'overflow:hidden', 'position:fixed',
+  'z-index:99', 'try:', 'except:', 'with open(f)', 'json.loads()',
+  'lambda x:', 'map(fn, lst)', 'filter(None,', 'list(range(', 'dict()',
+  'click.command()', 'argparse', '--version', 'sys.argv', 'os.path',
+  'type="text"', 'placeholder=', 'addEventListener', 'querySelector',
+  'innerHTML', 'classList.add(', 'transform:', 'transition:', 'flex:1',
+  'grid-template', 'nth-child(2)', '::before{', '::after{',
+];
+
+let cols = [];
+let W, H;
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  const count = Math.ceil(W / 55) * 2;
+  cols = Array.from({ length: count }, () => ({
+    x: Math.random() * W,
+    y: -Math.random() * H,
+    speed: 0.5 + Math.random() * 1.1,
+    text: snippets[Math.floor(Math.random() * snippets.length)],
+    opacity: 0.1 + Math.random() * 0.25,
+    size: 9 + Math.floor(Math.random() * 4),
+  }));
+}
+
+resize();
+window.addEventListener('resize', resize);
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  for (const col of cols) {
+    col.y += col.speed;
+    if (col.y > H + 40) {
+      col.y = -60;
+      col.text = snippets[Math.floor(Math.random() * snippets.length)];
+      col.opacity = 0.1 + Math.random() * 0.25;
+      col.speed = 0.5 + Math.random() * 1.1;
+    }
+    ctx.font = `${col.size}px Consolas, monospace`;
+    ctx.fillStyle = `rgba(255,255,255,${col.opacity})`;
+    ctx.fillText(col.text, col.x, col.y);
+  }
+  requestAnimationFrame(draw);
+}
+
+draw();
+</script>
+</body>
+</html>
