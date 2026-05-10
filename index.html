@@ -24,15 +24,8 @@
 
   html { scroll-behavior: smooth; }
 
-::selection {
-  background: #303234;
-  color: #ffffff;
-}
-
-::-moz-selection {
-  background: #303234;
-  color: #ffffff;
-}
+  ::selection { background: #303234; color: #ffffff; }
+  ::-moz-selection { background: #303234; color: #ffffff; }
 
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: #000; }
@@ -94,6 +87,28 @@
     pointer-events: none;
   }
 
+  /* about me nav link */
+  #about-link {
+    position: absolute;
+    top: 1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-family: 'Bitcount Grid Single', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    border-bottom: 0.5px solid rgba(255,255,255,0.3);
+    padding-bottom: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+  #about-link:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.8);
+  }
+
   .hero-content {
     position: relative;
     z-index: 2;
@@ -105,19 +120,18 @@
   }
 
   #ascii-art {
-  font-family: 'Consolas', monospace;
-  font-size: clamp(5px, 1.1vw, 11px);
-  line-height: 1.18;
-  color: #fff;
-  white-space: pre;
-  letter-spacing: 0.02em;
-  text-shadow: 0 0 18px rgba(255,255,255,0.25);
-  animation: fadeInAscii 1.8s ease both;
-
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+    font-family: 'Consolas', monospace;
+    font-size: clamp(5px, 1.1vw, 11px);
+    line-height: 1.18;
+    color: #fff;
+    white-space: pre;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 18px rgba(255,255,255,0.25);
+    animation: fadeInAscii 1.8s ease both;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
 
   @keyframes fadeInAscii {
     from { opacity: 0; transform: translateY(12px); }
@@ -343,6 +357,8 @@
   <div id="center-glow"></div>
   <canvas id="rain-canvas"></canvas>
 
+  <a id="about-link" href="about.html">about me</a>
+
   <div class="hero-content">
     <pre id="ascii-art">⣿⠛⠛⠛⠛⠻⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠛⢛⣿⠋⢀⡾⠃⠀⠀⠀⠀⢀⣤⣤⠤⠤⣤⣤⣀⣀⣀⣠⠶⡶⣤⣀⣠⠾⡷⣦⣀⣤⣤⡤⠤⠦⢤⣤⣄⡀⠀⢠⡶⢶⡄⠀⠀
@@ -445,7 +461,7 @@
       </div>
     </div>
 
-        <div class="project-card" data-category="webdev">
+    <div class="project-card" data-category="webdev">
       <div class="card-top">
         <div class="card-title">Infinite TacsNToes</div>
         <span class="card-tag">web dev</span>
